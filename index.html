@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102a43" />
+  <meta name="description" content="A fair, no-repeat PPG oral recitation question drawer." />
+  <title>PPG Recitation Quest</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="background" aria-hidden="true"></div>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Nangan National High School</p>
+      <h1>PPG Recitation Quest</h1>
+      <p class="subtitle">Philippine Political History • Grade 12 Knowledge</p>
+    </div>
+    <button id="teacherModeBtn" class="ghost-btn" type="button" aria-pressed="false">Teacher Mode: OFF</button>
+  </header>
+
+  <main class="app-shell">
+    <section class="stats" aria-label="Recitation statistics">
+      <article><span id="questionsLeft">75</span><small>Questions Left</small></article>
+      <article><span id="learnersDone">0/35</span><small>Learners Done</small></article>
+      <article><span id="learnersLeft">35</span><small>Learners Left</small></article>
+      <article><span id="sessionStatus">Ready</span><small>Session Status</small></article>
+    </section>
+
+    <section class="control-card">
+      <div class="step-label">STEP 1</div>
+      <h2>Call a learner</h2>
+      <p>Select a name manually or let the app choose fairly from learners who have not recited.</p>
+      <div class="selector-row">
+        <label class="sr-only" for="learnerSelect">Learner</label>
+        <select id="learnerSelect"><option value="">Choose a learner...</option></select>
+        <button id="randomLearnerBtn" class="secondary-btn" type="button">🎲 Pick Random Learner</button>
+      </div>
+      <div id="selectedLearner" class="selected-learner" aria-live="polite">No learner selected</div>
+
+      <div class="step-label">STEP 2</div>
+      <h2>Draw two questions</h2>
+      <p>Each question can appear only once during the session.</p>
+      <button id="drawBtn" class="draw-btn" type="button" disabled>Draw 2 Questions</button>
+    </section>
+
+    <section id="questionStage" class="question-stage" aria-live="polite" aria-label="Drawn questions">
+      <article class="question-card placeholder">
+        <span class="question-number">Q?</span>
+        <p>The first drawn question will appear here.</p>
+        <div class="answer">Answer hidden</div>
+      </article>
+      <article class="question-card placeholder">
+        <span class="question-number">Q?</span>
+        <p>The second drawn question will appear here.</p>
+        <div class="answer">Answer hidden</div>
+      </article>
+    </section>
+
+    <section class="actions">
+      <button id="completeBtn" class="complete-btn" type="button" disabled>✓ Mark Learner Complete</button>
+      <button id="undoBtn" class="ghost-btn" type="button" disabled>Undo Last Completion</button>
+      <button id="exportBtn" class="ghost-btn" type="button">Export History (.CSV)</button>
+      <button id="resetBtn" class="danger-btn" type="button">Reset Session</button>
+    </section>
+
+    <details class="history-panel">
+      <summary>Recitation History <span id="historyCount">0 entries</span></summary>
+      <div id="historyList" class="history-list"><p class="empty">No completed recitations yet.</p></div>
+    </details>
+  </main>
+
+  <dialog id="resetDialog">
+    <form method="dialog">
+      <h2>Reset the entire session?</h2>
+      <p>This will return all questions and learners to the pool. Export the history first if you need a record.</p>
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost-btn">Cancel</button>
+        <button id="confirmResetBtn" value="confirm" class="danger-btn">Yes, Reset</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>Progress is saved automatically on this device.</footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
